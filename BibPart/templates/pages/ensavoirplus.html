@@ -1,0 +1,103 @@
+<!-- Template En savoir plus-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| En savoir plus{%endblock%}
+
+{% block corps %}
+
+<div class="container">
+    <div class="text-center">
+        <h2>En savoir plus</h2>
+        <br/>
+        <p>Cette application a été développée par <a href="https://github.com/FannyLbr">Fanny Lebreton</a> dans le cadre
+            du <a href="https://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire">Master
+                2 Technologies numériques appliquées à l'histoire</a> de l'École nationale des chartes.</p>
+        <br/>
+    </div>
+    <div>
+        <h3 class="text-center">Intérêts scientifiques de BibPart</h3>
+        <br/>
+        <p>BibPart a pour objectif de recenser des partitions manuscrites authographes afin de centraliser ce type
+            de source pour en faciliter l'accès et la recherche.</p>
+        <p>Cette application s'adresse aux chercheurs, car les partitions originales sont de véritables références pour
+            la musicologie. Elles leur permettent par exemple d'analyser le processus de composition d'un compositeur.
+            Elles peuvent être aussi une source intéressante d'un point de vue matériel (intérêt pour l'encre, le papier
+            et l'écriture manuscrite).</p>
+        <p>BibPart peut être utile aussi pour les éditeurs de musique. Ces derniers pourraient consulter cette
+            application afin de se référer à ces sources originales lorsqu'ils éditent une partition.</p>
+        <p>Enfin, BibPart s'adresse à tous musiciens et mélomanes curieux, désireux de découvrir l'écriture d'un
+            compositeur.</p>
+        <br/>
+        <br/>
+    </div>
+    <div>
+        <h3 class="text-center">Fonctionnement de BibPart</h3>
+        <br/>
+        <div>
+            <h5>Comment est construit BibPart ?</h5>
+            <p>L'application a été créée avec les langages Python 3 (framework Flask), HTML et CSS (framework Bootstrap),
+                ainsi qu'à partir d'une base de données SQLite.</p>
+            <br/>
+        </div>
+        <div>
+            <h5>Quelles sont ses fonctionnalités ?</h5>
+            <p>3 index rencensent l'ensemble des données enregistrées dans la base :</p>
+            <ul>
+                <li>l'index des <a href="{{url_for('index_oeuvres')}}">oeuvres</a></li>
+                <li>l'index des <a href="{{url_for('index_partitions')}}">partitions</a></li>
+                <li>l'index des <a href="{{url_for('index_compositeurs')}}">compositeurs</a></li>
+            </ul>
+            <p>Chaque enregistrement repertorié dans l'index renvoie vers une notice présentant des données
+                bibliographiques.</p>
+            <p>Une recherche rapide est disponible et permet de donner accès à la notice bibliographique d'une oeuvre.
+                Elle peut être trouvée à l'aide de mots clefs portant sur le titre, la date, le type, la forme de
+                l'oeuvre, et sur le compositeur.</p>
+            <p>L'utilisateur a la possibilité de <a href="{{url_for('inscription')}}">s'inscrire</a>, puis de
+                <a href="{{url_for('connexion')}}">se connecter</a> afin de pouvoir avoir accès à d'autres
+                fonctionnalités.</p>
+            <p>En effet, une fois connecté, l'utilisateur peut contribuer à faire évoluer le contenu de la base de
+                données :
+            <ul>
+                <li>il peut enrichir la base grâce au formulaire <a href="{{url_for('accueil_ajout')}}">Enrichir
+                    la base</a>.
+                </li>
+                <li>il peut modifier les données grâce au formulaire <b>Modifier</b> accessible sur chacune des notices.
+                </li>
+                <li>il peut supprimer les données grâce au formulaire <b>Supprimer</b> accessible également sur chacune
+                    des notices.
+                </li>
+            </ul>
+            </p>
+            <p>Il peut également effectuer une recherche avancée, lui permettant de trouver à partir de différentes
+                entrées, soit la notice de l'oeuvre, soit la notice de la partition, soit la notice du compositeur.</p>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <div>
+        <h3 class="text-center">Sources</h3>
+        <br/>
+        <p>Les pages des partitions sont consultables grâce à la visionneuse IIIF de
+            <a href="https://gallica.bnf.fr/accueil/fr/content/accueil-fr?mode=desktop">Gallica</a>.</p>
+        <p>Les liens des vidéos présents en base sont des liens <a href="https://www.youtube.com/">Youtube</a>.</p>
+        <br/>
+        <br/>
+    </div>
+    <div>
+        <h3 class="text-center">Installation de l'application</h3>
+        <br/>
+        <p>Les informations liées à l'installation de BibPart sont disponibles sur
+            <a href="https://github.com/FannyLbr/BibPart_Projet_Python">Github</a>. Il est recommandé de créer d'abord
+            un environnement virtuel, puis d'installer les
+            dépendances du
+            projet via le fichier requirements.txt. Il est ensuite possible de lancer l'application grâce au fichier
+            run.py.</p>
+        <p>Il est recommandé d'être connecté à une connexion internet afin d'avoir accès aux visionneuses des partitions
+            et aux vidéos.</p>
+    </div>
+    <br/>
+    <br/>
+    <div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+</div>
+
+{% endblock %}

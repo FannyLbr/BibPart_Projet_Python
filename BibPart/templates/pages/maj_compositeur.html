@@ -1,0 +1,96 @@
+<!--Page modification de la notice du compositeur -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Compositeur : {{compositeur.nom_compositeur}} | Modification {%endblock%}
+
+{% block corps %}
+
+<div class="text-center">
+    <h1>Modifier un compositeur</h1>
+    <br/>
+    <p>Pour modifier un compositeur, complétez le formulaire et cliquez sur "Modifier".</p>
+    <p>Une aide à la modification est disponible sous ce présent formulaire.</p>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('maj_compositeur', identifier=compositeur.id_compositeur)}}">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Prénom*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_prenom" value="{{compositeur.prenom_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Nom*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_nom" value="{{compositeur.nom_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Année naissance*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_naissance"
+                   value="{{compositeur.annee_naissance_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Année mort*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_mort" value="{{compositeur.annee_mort_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Courte biographie*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_bio" value="{{compositeur.biographie_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Portrait</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_url" value="{{compositeur.url_portrait_compositeur}}"
+                   placeholder="https://upload.wikimedia.org/wikipedia/commons/[ID de l'image]"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div>
+    <p class="text-center fw-bold">Aide à la modification : </p>
+    <p>Tous les champs marqués par un * doivent être remplis.</p>
+    <p>Les champs 'années' doivent être remplies au format : AAAA.</p>
+    <p>Le champ 'portrait' doit être rempli de la façon suivante : https://upload.wikimedia.org/wikipedia/commons/[ID de
+        l'image].</p>
+</div>
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+
+{% endblock %}

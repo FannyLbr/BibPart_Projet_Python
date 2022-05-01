@@ -1,0 +1,81 @@
+<!--Page notice du compositeur-->
+{% extends "conteneur.html" %}
+
+{% block titre %}
+{%if var_compositeur_unique %}| {{var_compositeur_unique.prenom_compositeur}} {{var_compositeur_unique.nom_compositeur}}
+{% endif %}
+{% endblock %}
+
+{% block corps %}
+
+{% if var_compositeur_unique %}
+<h1 class="titre-index-notice">Notice du compositeur</h1>
+<br/>
+<br/>
+
+<div class="text-center">
+    {% if var_compositeur_unique.url_portrait_compositeur %}
+    <img src="{{var_compositeur_unique.url_portrait_compositeur}}" width="300">
+    <br/>
+    <br/>
+    {% endif %}
+
+    <div>
+        <div class="fw-bold">Prénom et nom</div>
+        <div>{{var_compositeur_unique.prenom_compositeur}} {{var_compositeur_unique.nom_compositeur}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Année de naissance</div>
+        <div>{{var_compositeur_unique.annee_naissance_compositeur}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Année de mort</div>
+        <div>{{var_compositeur_unique.annee_mort_compositeur}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Courte biographie</div>
+        <div>{{var_compositeur_unique.biographie_compositeur}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Oeuvre(s)</div>
+        <div>
+            {% for b_oeuvre in var_oeuvrecompo %}
+            <a href="{{url_for('notice_oeuvre', id_oeuvre=b_oeuvre.id_oeuvre)}}">{{b_oeuvre.titre_oeuvre}}</a> <br/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+{% if current_user.is_authenticated %}
+<div class="text-center">
+    <p>
+        <a href="{{url_for('maj_compositeur', identifier=var_compositeur_unique.id_compositeur)}}">Modifier la
+            notice</a> | <a
+            href="{{url_for('supprimer_compositeur', id_compositeur=var_compositeur_unique.id_compositeur) }}">Supprimer
+        la notice</a>
+    </p>
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    <p class="text-center text-danger">La notice du compositeur est en cours de construction...</p>
+    <p class="text-center">Nous vous prions de bien vouloir nous excuser.</p>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+<br/>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!-- Template de la recherche rapide -->
+<div class="hero container">
+    <form class="form" method="GET" action="{{url_for('recherche')}}">
+        <div class="input-group">
+            <input type="text" class="form-control form-control-lg" name="keyword" placeholder="Faire une recherche">
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-lg">Rechercher</button>
+      </span>
+        </div>
+    </form>
+</div>

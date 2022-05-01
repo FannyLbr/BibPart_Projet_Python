@@ -1,0 +1,25 @@
+<!--Page suppression de la notice du compositeur -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Compositeur : {{suppr_compositeur.nom_compositeur}} | Supprimer{%endblock%}
+
+{% block corps %}
+
+<div class="text-center">
+    <form method="POST" action="{{url_for('supprimer_compositeur', id_compositeur=suppr_compositeur.id_compositeur)}}">
+        <div>
+            <p>Êtes-vous certain(e) de vouloir supprimer ce compositeur : </p>
+            <br/>
+            <p value="{{suppr_compositeur.id_compositeur}}"><b>{{suppr_compositeur.prenom_compositeur}}
+                {{suppr_compositeur.nom_compositeur}}</b> ?</p>
+        </div>
+        <br/>
+        <div>
+            <div>
+                <button type="submit" class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}l>

@@ -1,0 +1,24 @@
+<!--Page suppression de la notice d'oeuvre -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Oeuvre : {{suppr_oeuvre.titre_oeuvre}} | Supprimer{%endblock%}
+
+{% block corps %}
+
+<div class="text-center">
+    <form method="POST" action="{{url_for('supprimer_oeuvre', id_oeuvre=suppr_oeuvre.id_oeuvre)}}">
+        <div>
+            <p>Êtes-vous certain(e) de vouloir supprimer cette oeuvre : </p>
+            <br/>
+            <p value="{{suppr_oeuvre.id_oeuvre}}"><em>{{suppr_oeuvre.titre_oeuvre}}</em> ?</p>
+        </div>
+        <br/>
+        <div>
+            <div>
+                <button type="submit" class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

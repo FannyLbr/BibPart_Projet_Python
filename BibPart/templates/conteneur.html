@@ -1,0 +1,144 @@
+<!-- Template général de l'application -->
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <!-- Appel du plugin Javascript Bootstrap (bootstrap.bundle.min) pour certaines fonctionnalités du design -->
+    <!-- Le fichier bootstrap.bundle.min est aussi présent dans static/js mais impossible de le faire fonctionner comme
+    l'appel du CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <title>BibPart {%block titre %}{%endblock%}</title>
+
+    <!-- Lien vers le fichier css.html pour le design défini par le framework Bootstrap. -->
+    {% include "partials/css.html" %}
+
+    <!-- Lien vers le fichier metadata.html qui contient les métadonnées de l'application. -->
+    {% include "partials/metadata.html" %}
+
+    <!-- Ensemble de règles CSS définies en plus de Bootstrap -->
+    <style type="text/css">
+      .titre-index-notice{
+      text-align: center;
+      text-decoration: underline;
+      }
+
+      .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      }
+
+      @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+        }
+      }
+      .dropdown-toggle{
+      background-color: transparent ;
+      border-color:  white ;
+      }
+
+      .hero{
+      background-position: center center;
+      padding:10vh;
+      background-image: url({{url_for("static", filename="images/partition1.jpg")}});
+      }
+
+      .container .hero{
+      background-image: none;
+      }
+    </style>
+</head>
+
+<body>
+<!-- Barre de navigation -->
+<nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color: #d2b48c;">
+    <!-- Logo -->
+    <img src="{{url_for('static', filename='images/logo1.jpg')}}" width="45" height="45"
+         class="d-inline-block align-top" alt="logo"/>
+
+    <div class="container-fluid">
+        <!-- Titre relié à la page d'accueil -->
+        <a class="navbar-brand" href="{{ url_for('accueil') }}">BibPart</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Menu déroulant de l'index-->
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">Index</button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ url_for('index_oeuvres') }}">Oeuvres</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('index_partitions') }}">Partitions</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('index_compositeurs') }}">Compositeurs</a></li>
+                    </ul>
+                </div>
+            <!-- Recherche rapide -->
+            <form class="d-flex position-absolute top-50 start-50 translate-middle" action="{{url_for('recherche')}}"
+                  method="GET">
+                <input class="form-control me-2" name="keyword" type="search" placeholder="Recherche rapide..."
+                       aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Rechercher</button>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {% if not current_user.is_authenticated %}
+        <!-- Boutons inscription et connexion si l'utilisateur n'est pas connecté-->
+        <a type="button" class="btn btn-outline-light me-2" href="{{ url_for('inscription') }}">Inscription</a>
+        <a type="button" class="btn btn-outline-light" href="{{ url_for('connexion') }}">Connexion</a>
+        {% else %}
+        <!-- Boutons disponibles si l'utilisteur est connecté -->
+        <a type="button" class="btn btn-outline-light" href="{{url_for('rechercheavancee')}}">Recherche avancée</a>
+        <a type="button" class="btn btn-outline-light" href="{{ url_for('accueil_ajout') }}">Enrichir la base</a>
+        <a type="button" class="btn btn-outline-light" href="{{ url_for('deconnexion') }}">Déconnexion
+            ({{current_user.nom_utilisateur}})</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- Ce bloc est à compléter selon les informations spécifiques de chaque page -->
+{% block afternav %}{%endblock%}
+
+<!-- Corps de la page -->
+<div class="container">
+    <!-- Bloc pour les messages d'erreurs -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row">
+        <div class="col">
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+        <div class="col">
+            <!-- Ce bloc est à compléter selon les informations spécifiques de chaque page -->
+            {% block corps %}{% endblock %}
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- Bas de la page -->
+<footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3 text-white" style="background-color: #d2b48c; font-size: 13px">
+        <!-- Redirection vers la page En savoir plus -->
+        <a id="link" href="{{url_for('ensavoirplus')}}">En savoir plus</a> <br/>
+        <!-- Logo -->
+        <img class="footer-logo" width="10%" src="{{url_for('static', filename='images/logo_ENC.png')}}"
+             alt="École nationale des Chartes">
+        BibPart - Fanny Lebreton, master TNAH, promotion 2022
+    </div>
+</footer>
+</body>
+</html>

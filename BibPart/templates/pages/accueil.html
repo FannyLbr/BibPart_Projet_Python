@@ -1,0 +1,59 @@
+<!-- Page d'accueil -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Accueil{%endblock%}
+
+{% block afternav %}{% include "partials/recherche.html" %}{%endblock%}
+
+{% block corps %}
+
+<div class="container">
+    <div class="text-center">
+        <br/>
+        <br/>
+        <h1>BibPart</h1>
+        <h3>Bienvenue sur la bibliothèque numérique de partitions manuscrites authographes !</h3>
+    </div>
+
+    <div class="bg-light p-5 rounded">
+        <p>BibPart recense des partitions manuscrites authographes. Ces originaux, écrits par la main de l'auteur,
+            constituent une source essentielle pour les chercheurs, et pour tous les musiciens et mélomanes curieux.</p>
+
+        <p>BibPart offre la possibilité de consulter des informations bibliographiques sur une oeuvre musicale,
+            sur la ou les partition(s) qui la constitue(nt) et sur son compositeur. Il est possible aussi de visionner
+            l'ensemble des pages de la partition ainsi que d'écouter l'oeuvre grâce à la mise à disposition de
+            vidéos.</p>
+
+        <p>La base de données regroupe :
+        <ul>
+            <li>
+                {% if oeuvres %}
+                {{oeuvres|length}} oeuvres
+                {% else %}
+                La base de données est en cours de constitution.
+                {% endif %}
+            </li>
+            <li>
+                {% if partitions %}
+                {{partitions|length}} partitions
+                {% else %}
+                La base de données est en cours de constitution.
+                {% endif %}
+            </li>
+            <li>
+                {% if compositeurs %}
+                {{compositeurs|length}} compositeurs
+                {% else %}
+                La base de données est en cours de constitution.
+                {% endif %}
+            </li>
+        </ul>
+        </p>
+
+        <p>Cette application web met à disposition divers outils afin d'accéder aux données. Pour en savoir plus, nous
+            vous conseillons de consulter la page <a id="link" href="{{url_for('ensavoirplus')}}">En savoir plus</a>.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

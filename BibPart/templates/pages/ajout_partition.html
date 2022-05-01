@@ -1,0 +1,110 @@
+<!--Page ajout d'une partition-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Formulaire d'ajout | Partition{% endblock %}
+
+{% block corps %}
+
+{% include "partials/ajout_general.html" %}
+
+<div class="text-center">
+    <h2>Ajouter une partition</h2>
+    <br/>
+    <p>Pour ajouter une nouvelle partition, complétez le formulaire ci-dessous et cliquez sur "Ajouter".</p>
+    <br/>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('ajout_partition')}}">
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Titre*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_titre_partition" placeholder="Titre de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Sous-titre</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_sous_titre_partition"
+                   placeholder="Sous-titre de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Format</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_format_partition" placeholder="Format de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nombre de pages</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_page_partition"
+                   placeholder="Nombre de pages de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Statut</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_statut_partition" placeholder="Statut de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Visionneuse</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_visionneuse_partition"
+                   placeholder="Inscrire le lien de la visionneuse IIIF de la partition"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Oeuvre*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_oeuvre_partition" id="Listeoeuvre">
+                {% for oeuvre in Listeoeuvre %}
+                <option value="{{oeuvre.titre_oeuvre}}">{{oeuvre.titre_oeuvre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Institution de conservation*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_institution_partition" id="Listeinstitution">
+                {% for institution in Listeinstitution %}
+                <option value="{{institution.nom_institution_conservation}}">
+                    {{institution.nom_institution_conservation}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div class="text-center">
+    <a href="{{url_for('accueil_ajout')}}">Retour à l'accueil du formulaire d'ajout</a>
+</div>
+
+{% endblock %}

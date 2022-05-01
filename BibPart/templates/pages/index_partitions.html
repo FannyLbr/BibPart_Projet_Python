@@ -1,0 +1,60 @@
+<!--Page index des partitions-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Index des partitions{%endblock%}
+
+{% block corps %}
+{% if var_groupe_partitions %}
+<h1 class="titre-index-notice">Index des partitions</h1>
+<br/>
+
+<p class="text-center">Il y a {{var_groupe_partitions.total}} partitions enregistrées dans la base de données :</p>
+<br/>
+
+<ul>
+    {% for b_p in var_groupe_partitions.items %}
+    <li><a href="{{url_for('notice_partition', id_partition=b_p.id_partition)}}">{{b_p.titre_partition}} |
+        {{b_p.nom_sous_partie_partition}}</a></li>
+    {% endfor %}
+</ul>
+<br/>
+<br/>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in var_groupe_partitions.iter_pages() %}
+        {% if page %}
+
+        {% if page != var_groupe_partitions.page %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('index_partitions', page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+
+        {% endfor %}
+    </ul>
+</nav>
+
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    <p class="text-center text-danger">La base de données est en cours de constitution...</p>
+    <p class="text-center">Nous vous prions de bien vouloir nous excuser.</p>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+
+{% endblock %}

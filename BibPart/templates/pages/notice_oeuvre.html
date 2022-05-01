@@ -1,0 +1,95 @@
+<!--Page notice de l'oeuvre-->
+{% extends "conteneur.html" %}
+
+{% block titre %}
+{%if var_oeuvre_unique %}| {{var_oeuvre_unique.titre_oeuvre}}{% endif %}
+{% endblock %}
+
+{% block corps %}
+
+{% if var_oeuvre_unique %}
+<h1 class="titre-index-notice">Notice de l'oeuvre</h1>
+<br/>
+<br/>
+
+<div class="text-start">
+    <div>
+        <div class="fw-bold">Titre</div>
+        <div class="fst-italic">{{var_oeuvre_unique.titre_oeuvre}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Compositeur</div>
+        <div>
+            <a href="{{url_for('notice_compositeur', id_compositeur=var_compositeur.id_compositeur)}}">
+                {{var_compositeur.prenom_compositeur}} {{var_compositeur.nom_compositeur}}
+                ({{var_compositeur.annee_naissance_compositeur}}-{{var_compositeur.annee_mort_compositeur}})</a>
+        </div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Date</div>
+        <div>{{var_oeuvre_unique.date_oeuvre}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Forme</div>
+        <div>{{var_forme.label_forme}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Type</div>
+        <div>{{var_type.label_type}}</div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Instrument(s)</div>
+        <div>
+            {% for b_instrument in var_instrument %}
+            {{b_instrument.label_instrument}}
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+
+    <div>
+        <div class="fw-bold">Notice(s) de(s) partition(s)</div>
+        <div>
+            {% for b_partition in var_partition %}
+            <a href="{{url_for('notice_partition', id_partition=b_partition.id_partition)}}">
+                {{b_partition.titre_partition}} | {{b_partition.nom_sous_partie_partition}}</a>
+            <br/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+{% if current_user.is_authenticated %}
+<div class="text-center">
+    <p>
+        <a href="{{url_for('maj_oeuvre', identifier=var_oeuvre_unique.id_oeuvre)}}">Modifier la notice</a> | <a
+            href="{{url_for('supprimer_oeuvre', id_oeuvre=var_oeuvre_unique.id_oeuvre) }}">Supprimer la notice</a>
+    </p>
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    <p class="text-center text-danger">La base de données est en cours de construction...</p>
+    <p class="text-center">Nous vous prions de bien vouloir nous excuser.</p>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+<br/>
+
+{% endblock %}

@@ -1,0 +1,179 @@
+<!-- Template de la recherche avancée -->
+<div class="hero container">
+    <form class="form" method="POST" method="GET" action="{{url_for('rechercheavancee')}}">
+
+        <div class="container">
+            <h2 class="titre-index-notice">Notice de l'oeuvre</h2>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Titre de l'oeuvre :</label>
+                    </div>
+                    <input type="text" class="form-control" name="titreOeuvre" placeholder="Titre"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Compositeur :</label>
+                    </div>
+                    <input type="text" class="form-control" name="compoOeuvre" placeholder="Nom"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Date de l'oeuvre :</label>
+                    </div>
+                    <input type="text" class="form-control" name="dateOeuvre" placeholder="AAAA"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Type :</label>
+                    </div>
+                    <input type="text" class="form-control" name="typeOeuvre" placeholder="Ex : instrumental, vocal"/>
+                </div>
+
+            </div>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Forme :</label>
+                    </div>
+                    <input type="text" class="form-control" name="formeOeuvre" placeholder="Ex : concerto"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <div class="fw-bold">
+                            <label>Instrument :</label>
+                        </div>
+                        <input type="text" class="form-control" name="instrumentOeuvre" placeholder="Instrument"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </br>
+        </br>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Recherche avancée</button>
+        </div>
+        </br>
+        <hr/>
+        <br/>
+        <br/>
+
+        <div class="container">
+            <h2 class="titre-index-notice">Notice de la partition</h2>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Titre de la partition :</label>
+                    </div>
+                    <input type="text" class="form-control" name="titrePartition" placeholder="Titre"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Sous-titre de la partition :</label>
+                    </div>
+                    <input type="text" class="form-control" name="soustitrePartition" placeholder="Sous-titre"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Format :</label>
+                    </div>
+                    <input type="text" class="form-control" name="formatPartition" placeholder="Ex : 25 x 29"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Nombre de page(s) :</label>
+                    </div>
+                    <input type="text" class="form-control" name="nbpagePartition" placeholder="Ex : 4 p."/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Statut :</label>
+                    </div>
+                    <input type="text" class="form-control" name="statutPartition" placeholder="Complet ou incomplet"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Nom institution de conservation :</label>
+                    </div>
+                    <input type="text" class="form-control" name="nomInstitutionConservation" placeholder="Nom"/>
+                </div>
+            </div>
+        </div>
+
+        </br>
+        </br>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Recherche avancée</button>
+        </div>
+        </br>
+        <hr/>
+        <br/>
+        <br/>
+
+        <div class="container">
+            <h2 class="titre-index-notice">Notice du compositeur</h2>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Prénom du compositeur :</label>
+                    </div>
+                    <input type="text" class="form-control" name="prenomCompo" placeholder="Prénom"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Nom du compositeur :</label>
+                    </div>
+                    <input type="text" class="form-control" name="nomCompo" placeholder="Nom"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row justify-content-around">
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Année naissance :</label>
+                    </div>
+                    <input type="text" class="form-control" name="naissanceCompo" placeholder="AAAA"/>
+                </div>
+                <div class="col-5">
+                    <div class="fw-bold">
+                        <label>Année mort :</label>
+                    </div>
+                    <input type="text" class="form-control" name="mortCompo" placeholder="AAAA"/>
+                </div>
+            </div>
+        </div>
+
+        </br>
+        </br>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Recherche avancée</button>
+        </div>
+        </br>
+        <hr/>
+        <br/>
+        <br/>
+
+    </form>
+</div>

@@ -1,0 +1,58 @@
+<!--Page index des oeuvres-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Index des oeuvres{%endblock%}
+
+{% block corps %}
+{% if var_groupe_oeuvres %}
+<h1 class="titre-index-notice">Index des oeuvres</h1>
+<br/>
+
+<p class="text-center">Il y a {{var_groupe_oeuvres.total}} oeuvres enregistrées dans la base de données :</p>
+<br/>
+
+<ul>
+    {% for b_o in var_groupe_oeuvres.items %}
+    <li><a href="{{url_for('notice_oeuvre', id_oeuvre=b_o.id_oeuvre)}}">{{b_o.titre_oeuvre}}</a></li>
+    {% endfor %}
+</ul>
+<br/>
+<br/>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in var_groupe_oeuvres.iter_pages() %}
+        {% if page %}
+
+        {% if page != var_groupe_oeuvres.page %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('index_oeuvres', page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+
+        {% endfor %}
+    </ul>
+</nav>
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    <p class="text-center text-danger">La base de données est en cours de constitution...</p>
+    <p class="text-center">Nous vous prions de bien vouloir nous excuser.</p>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+<!--Page ajout d'un compositeur-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Formulaire d'ajout | Compositeur{% endblock %}
+
+{% block corps %}
+
+{% include "partials/ajout_general.html" %}
+
+<div class="text-center">
+    <h2>Ajouter un compositeur</h2>
+    <br/>
+    <p>Pour ajouter un nouveau compositeur, complétez le formulaire ci-dessous et cliquez sur "Ajouter".</p>
+    <br/>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('ajout_compositeur')}}">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nom*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_nom_compo" placeholder="Nom du compositeur"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Prénom*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_prenom_compo" placeholder="Prénom du compositeur"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Année de naissance*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_naissance_compo" placeholder="AAAA"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Année de mort*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_mort_compo" placeholder="AAAA"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Courte biographie*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_bio_compo"
+                   placeholder="Courte biographie du compositeur"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Portrait</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_portrait_compo"
+                   placeholder="https://upload.wikimedia.org/wikipedia/commons/[ID de l'image]"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div class="text-center">
+    <a href="{{url_for('accueil_ajout')}}">Retour à l'accueil du formulaire d'ajout</a>
+</div>
+
+{% endblock %}

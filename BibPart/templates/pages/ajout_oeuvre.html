@@ -1,0 +1,103 @@
+<!--Page ajout d'une oeuvre-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Formulaire d'ajout | Oeuvre{% endblock %}
+
+{% block corps %}
+
+{% include "partials/ajout_general.html" %}
+
+<div class="text-center">
+    <h2>Ajouter une oeuvre</h2>
+    <br/>
+    <p>Pour ajouter une nouvelle oeuvre, complétez le formulaire ci-dessous et cliquez sur "Ajouter".</p>
+    <br/>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('ajout_oeuvre')}}">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Titre*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_titre_oeuvre" placeholder="Titre de l'oeuvre"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_date_oeuvre" placeholder="AAAA"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Audio</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_audio_oeuvre"
+                   placeholder="https://www.youtube.com/embed/[ID de la vidéo]"/>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Compositeur*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_compositeur_oeuvre" id="Listecompositeur">
+                {% for compositeur in Listecompositeur %}
+                <option value="{{compositeur.nom_compositeur}}">{{compositeur.nom_compositeur}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Type*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_type_oeuvre" id="Listetype">
+                {% for type in Listetype %}
+                <option value="{{type.label_type}}">{{type.label_type}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Forme*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_forme_oeuvre" id="Listeforme">
+                {% for forme in Listeforme %}
+                <option value="{{forme.label_forme}}">{{forme.label_forme}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Instrument*</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="ajout_label_instrument" id="Listeinstrument">
+                {% for instrument in Listeinstrument %}
+                <option value="{{instrument.label_instrument}}">{{instrument.label_instrument}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div class="text-center">
+    <a href="{{url_for('accueil_ajout')}}">Retour à l'accueil du formulaire d'ajout</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+<!--Page connexion -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Connexion{%endblock%}
+
+{% block corps %}
+
+<h1 class="text-center">Connexion</h1>
+<br/>
+
+<form class="form" method="POST" action="{{url_for('connexion')}}">
+    <div class="form-group">
+        <label>Login</label>
+        <input type="text" class="form-control" name="login" aria-describedby="loginHelp"
+               placeholder="Nom d'utilisateur pour se connecter">
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="motdepasse" placeholder="Mot de passe">
+    </div>
+    <br/>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <a href="{{url_for('inscription')}}" class="btn btn-secondary">S'inscrire</a>
+    </div>
+</form>
+{% endblock %}

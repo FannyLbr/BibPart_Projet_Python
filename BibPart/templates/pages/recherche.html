@@ -1,0 +1,46 @@
+<!-- Template des résultats de la recherche rapide -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Recherche rapide{%endblock%}
+
+{% block corps %}
+<!-- Lien vers le template du formulaire de la recherche rapide -->
+{% include "partials/recherche.html" %}
+
+<h1 class="text-center">{{titre}}</h1>
+<br/>
+
+<!-- Résultats de la notice oeuvre -->
+{% if resultats %}
+<p>Il y a {{resultats.total}} résultat(s) répondant à votre requête :</p>
+<br/>
+<ul>
+    {% for b_oeuv in resultats.items %}
+    <li><a href="{{url_for('notice_oeuvre', id_oeuvre=b_oeuv.id_oeuvre)}}">{{b_oeuv.titre_oeuvre}}</a></li>
+    {% endfor %}
+</ul>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in resultats.iter_pages() %}
+        {% if page %}
+        {% if page != resultats.page %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('recherche', keyword=keyword, resultats=resultats, page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}

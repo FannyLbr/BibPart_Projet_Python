@@ -1,0 +1,130 @@
+<!--Page notice de la partition-->
+{% extends "conteneur.html" %}
+
+{% block titre %}
+{%if var_partition_unique %}| {{var_partition_unique.titre_partition}}{% endif %}
+{% endblock %}
+
+{% block corps %}
+
+{% if var_partition_unique %}
+<h1 class="titre-index-notice">Notice de la partition</h1>
+<br/>
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br/>
+            <br/>
+            <div>
+                <div class="fw-bold">Titre</div>
+                <div class="fst-italic">{{var_partition_unique.titre_partition}}</div>
+            </div>
+            <br/>
+
+            {% if var_partition_unique.nom_sous_partie_partition %}
+            <div>
+                <div class="fw-bold">Sous-titre</div>
+                <div class="fst-italic">{{var_partition_unique.nom_sous_partie_partition}}</div>
+            </div>
+            <br/>
+            {% endif %}
+
+            {% if var_partition_unique.format_partition %}
+            <div>
+                <div class="fw-bold">Format</div>
+                <div>{{var_partition_unique.format_partition}}</div>
+            </div>
+            <br/>
+            {% endif %}
+
+            {% if var_partition_unique.page_partition %}
+            <div>
+                <div class="fw-bold">Nombre de pages</div>
+                <div>{{var_partition_unique.page_partition}}</div>
+            </div>
+            <br/>
+            {% endif %}
+
+            {% if var_partition_unique.statut_partition %}
+            <div>
+                <div class="fw-bold">Statut</div>
+                <div>{{var_partition_unique.statut_partition}}</div>
+            </div>
+            <br/>
+            {% endif %}
+
+            <div>
+                <div class="fw-bold">Institution de conservation</div>
+                <div>{{var_institution.nom_institution_conservation}}</div>
+            </div>
+            <br/>
+
+            <div>
+                <div class="fw-bold">Localisation</div>
+                <div>{{var_institution.ville_institution_conservation}}</div>
+            </div>
+            <br/>
+
+            <div>
+                <div class="fw-bold">Notice de l'oeuvre</div>
+                <div>
+                    <a href="{{url_for('notice_oeuvre', id_oeuvre=var_oeuvre.id_oeuvre)}}">{{var_oeuvre.titre_oeuvre}}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            {% if var_partition_unique.url_visionneuse_IIIF %}
+            <div>
+                <h4 class="fw-bold text-center">Visionneuse</h4>
+                <br/>
+                <iframe src="{{var_partition_unique.url_visionneuse_IIIF}}" width="853" height="580" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+            <br/>
+            <br/>
+            {% endif %}
+
+            {% if var_audio.audio_oeuvre %}
+            <div class="border border-5 rounded">
+                <div>
+                    <h4 class="fw-bold text-center">Vidéo</h4>
+                    <br/>
+                    <div class="text-center">
+                        <iframe src="{{var_audio.audio_oeuvre}}" width="520" height="340" frameborder="2"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+{% if current_user.is_authenticated %}
+<div class="text-center">
+    <p>
+        <a href="{{url_for('maj_partition', identifier=var_partition_unique.id_partition)}}">Modifier la notice</a> | <a
+            href="{{url_for('supprimer_partition', id_partition=var_partition_unique.id_partition) }}">Supprimer la
+        notice</a>
+    </p>
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    <p class="text-center text-danger">La notice de la partition est en cours de construction...</p>
+    <p class="text-center">Nous vous prions de bien vouloir nous excuser.</p>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+<br/>
+
+{% endblock %}

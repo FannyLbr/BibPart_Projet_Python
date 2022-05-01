@@ -1,0 +1,37 @@
+<!--Page ajout d'une forme-->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Formulaire d'ajout | Forme{% endblock %}
+
+{% block corps %}
+
+{% include "partials/ajout_general.html" %}
+
+<div class="text-center">
+    <h2>Ajouter une forme</h2>
+    <br/>
+    <p>Pour ajouter une nouvelle forme, complétez le formulaire ci-dessous et cliquez sur "Ajouter".</p>
+    <br/>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('ajout_forme')}}">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Forme*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ajout_label_forme" placeholder="Label de la forme musicale"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div class="text-center">
+    <a href="{{url_for('accueil_ajout')}}">Retour à l'accueil du formulaire d'ajout</a>
+</div>
+{% endblock %}

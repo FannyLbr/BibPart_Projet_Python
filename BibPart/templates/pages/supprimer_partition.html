@@ -1,0 +1,25 @@
+<!--Page suppression de la notice de la partition -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Partition : {{suppr_partition.nom_sous_partie_partition}} | Supprimer{%endblock%}
+
+{% block corps %}
+
+<div class="text-center">
+    <form method="POST" action="{{url_for('supprimer_partition', id_partition=suppr_partition.id_partition)}}">
+        <div>
+            <p>Êtes-vous certain(e) de vouloir supprimer cette partition : </p>
+            <br/>
+            <p value="{{suppr_partition.id_partition}}"><em>{{suppr_partition.titre_partition}} |
+                {{suppr_partition.nom_sous_partie_partition}}</em> ?</p>
+        </div>
+        <br/>
+        <div>
+            <div>
+                <button type="submit" class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

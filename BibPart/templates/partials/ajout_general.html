@@ -1,0 +1,24 @@
+<!-- En-tête insérée dans l'ensemble des pages d'ajout -->
+<div class="text-center">
+    <h1>Enrichir la base : formulaire d'ajout</h1>
+    <br/>
+    <p>Pour ajouter de nouvelles données, complétez les formulaires ci-dessous.</p>
+</div>
+
+<nav class="navbar navbar-light bg-light justify-content-center">
+    <form class="form-inline">
+        <a href="{{ url_for('ajout_compositeur')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire
+            compositeur</a>
+        <a href="{{ url_for('ajout_forme')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire forme</a>
+        <a href="{{url_for('ajout_instrument')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire
+            instrument</a>
+        <a href="{{url_for('ajout_institution')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire
+            institution de conservation</a>
+        <a href="{{url_for('ajout_oeuvre')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire oeuvre</a>
+        <a href="{{url_for('ajout_partition')}}" class="btn btn-sm btn-outline-primary" type="button">Formulaire
+            partition</a>
+    </form>
+</nav>
+<br/>
+<br/>
+

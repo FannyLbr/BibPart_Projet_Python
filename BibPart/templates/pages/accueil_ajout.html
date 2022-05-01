@@ -1,0 +1,34 @@
+<!-- Page d'accueil pour l'ajout -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Accueil formulaire d'ajout{% endblock %}
+
+{% block corps %}
+
+{% include "partials/ajout_general.html" %}
+
+<div class="container">
+    <p class="text-center fw-bold">Aide à l'ajout</p>
+
+    <p>Ce présent formulaire permet d'enrichir la base existante avec l'enregistrement de nouvelles données.</p>
+
+    <p>Trois démarches sont possibles :</p>
+    <ul><b>Cas 1 :</b> vous souhaitez ajouter une oeuvre et sa partition dont aucune donnée n'est présente dans la base
+        :
+        nous vous conseillons de remplir l'ensemble des formulaires dans l'ordre.
+    </ul>
+    <ul><b>Cas 2 :</b> vous souhaitez ajouter une oeuvre et sa partition dont certaines données sont déjà présentes dans
+        la base :
+        nous vous conseillons de ne remplir que les formulaires permettant d'ajouter les nouvelles données.
+    </ul>
+    <ul><b>Cas 3 :</b> vous souhaitez ajouter une partition se rattachant à une oeuvre déjà présente dans la base :
+        nous vous conseillons de ne remplir que le formulaire de la partition.
+    </ul>
+
+    <p>Dans l'ensemble des formulaires, certains champs sont marqués d'un *, cela signifie qu'ils sont obligatoires.</p>
+
+    <p>Les formulaires pour l'ajout d'une oeuvre et l'ajout d'une partition ont des champs avec des listes,
+        il suffit de sélectionner la donnée souhaitée.</p>
+</div>
+
+{% endblock %}

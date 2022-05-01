@@ -1,0 +1,149 @@
+<!--Page modification de la notice de l'oeuvre -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Oeuvre : {{oeuvre.titre_oeuvre}} | Modification {%endblock%}
+
+{% block corps %}
+
+<div class="text-center">
+    <h1>Modifier une oeuvre</h1>
+    <br/>
+    <p>Pour modifier une oeuvre, complétez le formulaire et cliquez sur "Modifier".</p>
+    <p>Une aide à la modification est disponible sous ce présent formulaire.</p>
+    <br/>
+</div>
+
+<form class="form" method="POST" action="{{url_for('maj_oeuvre', identifier=oeuvre.id_oeuvre)}}">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Titre*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_titre" value="{{oeuvre.titre_oeuvre}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Date*</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_date_oeuvre" value="{{oeuvre.date_oeuvre}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <div class="dropdown col-6 col-md-4">
+            <button class="btn btn-outline-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">Liste des ID des compositeurs*
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="Listecompositeur">
+                {% for compositeur in Listecompositeur %}
+                <li><a class="dropdown-item">ID {{compositeur.id_compositeur}} : {{compositeur.nom_compositeur}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" class="form-control" name="maj_compositeur"
+                   value="{{oeuvre.compositeur_id_compositeur}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <div class="dropdown col-6 col-md-4">
+            <button class="btn btn-outline-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">Liste des ID des formes*
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="Listeforme">
+                {% for forme in Listeforme %}
+                <li><a class="dropdown-item">ID {{forme.id_forme}} : {{forme.label_forme}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" class="form-control" name="maj_forme" value="{{oeuvre.forme_id_forme}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <div class="dropdown col-6 col-md-4">
+            <button class="btn btn-outline-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton3"
+                    data-bs-toggle="dropdown" aria-expanded="false">Liste des ID des types*
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3" id="Listetype">
+                {% for type in Listetype %}
+                <li><a class="dropdown-item">ID {{type.id_type}} : {{type.label_type}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" class="form-control" name="maj_type" value="{{oeuvre.type_id_type}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <div class="dropdown col-6 col-md-4">
+            <button class="btn btn-outline-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton4"
+                    data-bs-toggle="dropdown" aria-expanded="false">Liste des ID des instruments*
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4" id="Listeinstrument">
+                {% for instrument in Listeinstrument %}
+                <li><a class="dropdown-item">ID {{instrument.id_instrument}} : {{instrument.label_instrument}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" class="form-control" name="maj_instrument" value="{{oeuvre.instruments}}"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Vidéo</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="maj_audio" value="{{oeuvre.audio_oeuvre}}"
+                   placeholder="https://www.youtube.com/embed/[ID de la vidéo]"/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </div>
+</form>
+
+<br/>
+<br/>
+<div>
+    <p class="text-center fw-bold">Aide à la modification : </p>
+    <p>Tous les champs marqués par un * doivent être remplis.</p>
+    <p>Les deux premiers champs peuvent être corrigés sans contraintes.</p>
+    <p>Les 4 autres champs ne peuvent être corrigés qu'avec l'ID d'un élément déjà contenu en base. Nous vous invitons
+        à consulter au préalable les listes des ID propres à chaque champ situés ci-dessus.</p>
+    <p>Si aucun des ID ne correspond à la correction que vous souhaitez faire, alors nous vous conseillons de passer par
+        le formulaire de suppression de la notice, puis de passer par le formulaire d'ajout.</p>
+    <p>Si vous souhaitez faire correspondre une partition présente en base avec cette notice, nous vous invitons à
+        consulter la partition en question et à modifier son champ 'Titre oeuvre'.</p>
+</div>
+<br/>
+<br/>
+<div class="text-center"><a href="{{url_for('accueil')}}">Retour à l'accueil</a></div>
+
+{% endblock %}

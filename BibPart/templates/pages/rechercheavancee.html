@@ -1,0 +1,117 @@
+<!-- Template des résultats de la recherche avancée -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Recherche avancée{%endblock%}
+
+{% block corps %}
+<!-- Lien vers le template du formulaire de la recherche avancée -->
+{% include "partials/rechercheavancee.html" %}
+
+<h1 class="text-center">{{titre}}</h1>
+<br/>
+
+<!-- Résultats de la notice oeuvre -->
+{% if resultatsA %}
+<p>Il y a {{resultatsA.total}} résultat(s) répondant à votre requête :</p>
+<br/>
+<ul>
+    {% for b_oeuvre in resultatsA.items %}
+    <li><a href="{{url_for('notice_oeuvre', id_oeuvre=b_oeuvre.id_oeuvre)}}">{{b_oeuvre.titre_oeuvre}}</a></li>
+    {% endfor %}
+</ul>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in resultatsA.iter_pages() %}
+        {% if page %}
+        {% if page != resultatsA.page %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('rechercheavancee', keyword=keyword, resultatsA=resultatsA,
+            page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+
+<!-- Résultats de la notice partition -->
+{% if resultatsB %}
+<p>Il y a {{resultatsB.total}} résultat(s) répondant à votre requête :</p>
+<br/>
+<ul>
+    {% for b_part in resultatsB.items %}
+    <li><a href="{{url_for('notice_partition', id_partition=b_part.id_partition)}}">{{b_part.titre_partition}} |
+        {{b_part.nom_sous_partie_partition}}</a></li>
+    {% endfor %}
+</ul>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in resultatsB.iter_pages() %}
+        {% if page %}
+        {% if page != resultatsB.page %}
+        <li class="page-item">
+            <a class="page-link"
+               href="{{ url_for('rechercheavancee', keyword=keyword, resultatsB=resultatsB, page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+
+<!-- Résultats de la notice compositeur -->
+{% if resultatsC %}
+<p>Il y a {{resultatsC.total}} résultat(s) répondant à votre requête :</p>
+<br/>
+<ul>
+    {% for b_compo in resultatsC.items %}
+    <li><a href="{{url_for('notice_compositeur', id_compositeur=b_compo.id_compositeur)}}">{{b_compo.prenom_compositeur}}
+        {{b_compo.nom_compositeur}}</a></li>
+    {% endfor %}
+</ul>
+<!-- Gestion de la pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in resultatsC.iter_pages() %}
+        {% if page %}
+        {% if page != resultatsC.page %}
+        <li class="page-item">
+            <a class="page-link"
+               href="{{ url_for('rechercheavancee', keyword=keyword, resultatsC=resultatsC, page=page) }}">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item active disabled">
+            <a class="page-link">{{page}} <span>(actuelle)</span></a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">...</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}

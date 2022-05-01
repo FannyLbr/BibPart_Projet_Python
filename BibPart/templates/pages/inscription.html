@@ -1,0 +1,47 @@
+<!--Page inscription -->
+{% extends "conteneur.html" %}
+
+{% block titre %}| Inscription{%endblock%}
+
+{% block corps %}
+
+<h1 class="text-center">Inscription</h1>
+<br/>
+<p>Complétez le formulaire et cliquez sur "S'inscrire".</p>
+
+<form class="form" method="POST" action="{{url_for('inscription')}}">
+    <div class="form-group">
+        <label>Login</label>
+        <input type="text" class="form-control" name="login" aria-describedby="loginHelp"
+               placeholder="Nom d'utilisateur pour se connecter">
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <label>Nom</label>
+        <input type="text" class="form-control" name="nom" aria-describedby="nomHelp"
+               placeholder="Votre nom pour les crédits">
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
+               placeholder="email@example.com">
+        <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre adresse avec qui que ce
+            soit.</small>
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="motdepasse" placeholder="Mot de passe">
+    </div>
+    <br/>
+
+    <div>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+    </div>
+</form>
+
+{% endblock %}
