@@ -1,4 +1,4 @@
-<!--Script insertion des données dans la BDD-->
+# Script insertion des données dans la BDD
 BEGIN TRANSACTION;
 INSERT INTO "type" ("id_type","label_type") VALUES (1,'musique vocale'),
  (2,'musique instrumentale'),

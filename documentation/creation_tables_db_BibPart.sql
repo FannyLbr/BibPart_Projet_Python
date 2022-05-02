@@ -1,4 +1,4 @@
-<!--Script pour la création des tables de la BDD-->
+# Script pour la création des tables de la BDD
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS "type";
 CREATE TABLE IF NOT EXISTS "type" (
